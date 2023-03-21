@@ -1,0 +1,39 @@
+.evil-alert {
+    @include button-size($alert-padding-x, $alert-padding-y, $alert-title-font-size, $alert-border-radius);
+    border-width: $alert-border-width;
+    border-style: solid;
+    position: relative;
+    p{
+        margin: 0;
+    }
+    &-title{
+        display: inline-block;
+        margin-bottom: $alert-margin-bottom;
+        font-size: 16px;
+        font-weight: $alert-title-font-weight;
+    }
+    &-hastitle{
+        padding: 8px 12px;
+    }
+    .icon-close{
+        position: absolute;
+        cursor: pointer;
+        right: 16px;
+        width: 12px;
+        height: 12px;
+        font-size: 16px;
+    }
+}
+.evil-alert-success{
+    @include alert-style($lightback,$lightgreen)
+}
+.evil-alert-warning{
+    @include alert-style($yellow,$orange)
+}
+.evil-alert-info{
+    @include alert-style($blue,$blue);
+    color:#fff;
+}
+.evil-alert-error{
+    @include alert-style(#fff2f0,$red)
+}

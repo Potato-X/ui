@@ -30,3 +30,8 @@
         border-color: $border;
     }
 }
+
+@mixin alert-style($alert-background-color,$border-color){
+    background-color: $alert-background-color;
+    border-color: $border-color;
+}
