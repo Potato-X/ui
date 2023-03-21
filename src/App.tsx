@@ -15,11 +15,11 @@ const App: React.FC = () => {
         <hr />
         <Alert closable type='success' description='这是一个简单的小测试'>success:没有标题的孤儿?</Alert>
         <div style={{margin:'8px'}}></div>
-        <Alert title='主题' type='success' description='这是一个简单的小测试'>success:我是插槽,我说了算,你这个description算老几?</Alert>
+        <Alert closable title='主题' type='success' description='这是一个简单的小测试'>success:我是插槽,我说了算,你这个description算老几?</Alert>
         <div style={{margin:'8px'}}></div>
         <Alert title='主题' type='warning' description='这是一个简单的小测试'>warning:我是插槽,我说了算,你这个description算老几?</Alert>
         <div style={{margin:'8px'}}></div>
-        <Alert title='主题' type='info' description='这是一个简单的小测试'>info:我是插槽,我说了算,你这个description算老几?</Alert>
+        <Alert closable title='主题' type='info' description='这是一个简单的小测试'>info:我是插槽,我说了算,你这个description算老几?</Alert>
         <div style={{margin:'8px'}}></div>
         <Alert title='主题' type='error' description='这是一个简单的小测试'>error:我是插槽,我说了算,你这个description算老几?</Alert>
     </div>)
