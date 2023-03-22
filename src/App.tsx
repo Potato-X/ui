@@ -6,12 +6,15 @@ const App: React.FC = () => {
     function clickHandler(event:React.MouseEvent){
         console.log(event)
     }
+    function clicklink(event:React.MouseEvent){
+        console.log('link')
+    }
     return (<div>
         <Button btnType="primary" size="large" disabled>Primarydisabled按钮</Button>
         <Button btnType="primary" size="large" autoFocus>Primary按钮</Button>
         <Button btnType="default" disabled>default按钮</Button>
         <Button btnType="danger" size="small" onClick={clickHandler}>Danger按钮</Button>
-        <Button btnType="link">文字按钮</Button>
+        <Button btnType="link" disabled onClick={clicklink}>文字按钮</Button>
         <hr />
         <Alert closable type='success' description='这是一个简单的小测试'>success:没有标题的孤儿?</Alert>
         <div style={{margin:'8px'}}></div>
