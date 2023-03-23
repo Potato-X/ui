@@ -1,0 +1,31 @@
+.evil-menu {
+    padding: 0;
+    border: $menu-border-width solid $menu-border-color;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, .08), 0 3px 6px -4px rgba(0, 0, 0, .12), 0 9px 28px 8px rgba(0, 0, 0, .05);
+    
+    width: 256px;
+
+    &-item {
+        cursor: pointer;
+        list-style: none;
+        padding: $menu-item-padding-y $menu-item-padding-x;
+        transition: $menu-item-transition;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, .06);
+        }
+
+        &:active {
+            color: #fff;
+            background-color: $menu-item-active-color;
+            border-width: $menu-item-active-border-width;
+        }
+
+    }
+
+    &-item.active {
+        color: #fff;
+        background-color: $menu-item-active-color;
+        border-width: $menu-item-active-border-width;
+    }
+}
