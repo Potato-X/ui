@@ -39,11 +39,13 @@ const Menu: React.FC<IMenuProps> = (props) => {
         onSelect && onSelect(index)
     }
     return (
-        <Context.Provider value={{ defaultIndex: currentIndex, initItemIndex: initItemIndex, selectItem }}>
-            <ul style={style} className={classes}>
+
+        <ul style={style} className={classes}>
+            <Context.Provider value={{ defaultIndex: currentIndex, initItemIndex: initItemIndex, selectItem }}>
                 {children}
-            </ul>
-        </Context.Provider>
+            </Context.Provider>
+        </ul >
+
     )
 }
 
