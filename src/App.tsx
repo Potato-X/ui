@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from './components/Button'
 import Alert from "./components/Alert/alert"
-import { Menu, MenuItem } from './components/Menu'
+import { Menu, MenuItem, SubMenu } from './components/Menu'
 const App: React.FC = () => {
     function clickHandler(event: React.MouseEvent) {
         console.log(event)
@@ -29,10 +29,16 @@ const App: React.FC = () => {
         <div style={{ margin: '8px' }}></div>
         <Alert title='主题' type='error' description='这是一个简单的小测试'>error:我是插槽,我说了算,你这个description算老几?</Alert>
         <hr />
-        <Menu defaultIndex={2} onSelect={getSelectItem}>
+        <Menu defaultIndex={0} onSelect={getSelectItem} mode="horizontal">
             <MenuItem>苹果</MenuItem>
-            <MenuItem>梨子</MenuItem>
+            <MenuItem disabled>梨子</MenuItem>
             <MenuItem>橙子</MenuItem>
+            <MenuItem>西瓜</MenuItem>
+            <SubMenu title='水果'>
+                <MenuItem>山竹</MenuItem>
+                <MenuItem>葡萄</MenuItem>
+                <MenuItem>荔枝</MenuItem>
+            </SubMenu>
         </Menu>
     </div>)
 }

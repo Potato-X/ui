@@ -1,5 +1,8 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, cloneElement } from 'react'
 import classNames from 'classnames';
+import { IMenuItemProps } from './menuItem'
+import { ISubMenuProps } from './submenu'
+
 type ModeType = 'vertical' | 'horizontal'
 interface IMenuProps {
     children: React.ReactNode | React.ReactNode[];
@@ -12,12 +15,10 @@ interface IMenuProps {
 
 interface IProvider {
     defaultIndex: number,
-    initItemIndex: () => number;
     selectItem: (index: number) => void;
 }
 const Provider: IProvider = {
     defaultIndex: 0,
-    initItemIndex: () => 0,
     selectItem: (index) => {
 
     }
@@ -31,17 +32,26 @@ const Menu: React.FC<IMenuProps> = (props) => {
     const classes = classNames('evil-menu', className, {
         [`evil-menu-${mode}`]: true
     })
-    function initItemIndex() {
-        return ++index
-    }
     function selectItem(index: number) {
         setCurrentIndex(index)
         onSelect && onSelect(index)
     }
+    function renderChildren() {
+        return React.Children.map(children, (child, index) => {
+            let childEl = child as React.FunctionComponentElement<IMenuItemProps | ISubMenuProps>
+            const { displayName } = childEl.type
+            // console.log(childEl.type.displayName)
+            if (displayName == 'MenuItem' || displayName == 'SubMenu') {
+                return cloneElement(childEl, { index })
+            } else {
+                console.error("当前Menu组件的子组件不是MenuItem或者SubMenu")
+            }
+        })
+    }
     return (
-        <Context.Provider value={{ defaultIndex: currentIndex, initItemIndex: initItemIndex, selectItem }}>
+        <Context.Provider value={{ defaultIndex: currentIndex, selectItem }}>
             <ul style={style} className={classes}>
-                {children}
+                {renderChildren()}
             </ul>
         </Context.Provider>
     )

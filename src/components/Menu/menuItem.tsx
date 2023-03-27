@@ -1,27 +1,24 @@
 import React, { useContext, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { Context } from './menu'
-interface IMenuItemProps {
+export interface IMenuItemProps {
     children: React.ReactNode;
     style?: React.CSSProperties;
     className?: string;
     disabled?: boolean;
+    index?: string|number;
 }
 const MenuItem: React.FC<IMenuItemProps> = (props) => {
-    const { children, style, className, disabled } = props
-    const { defaultIndex, initItemIndex,selectItem } = useContext(Context)
-    const [index, setIndex] = useState(0)
-
-    useEffect(() => {
-        // console.log(222222,initItemIndex())
-        setIndex(initItemIndex())
-    }, [])
+    const { children, style, className, disabled, index } = props
+    const { defaultIndex, selectItem } = useContext(Context)
     const classes = classNames('evil-menu-item', className, {
         'is-disabled': disabled,
         'active': index === defaultIndex
     })
-    function selectHandler(){
-        selectItem(index)
+    function selectHandler() {
+        if (typeof index === 'number') {
+            selectItem(index)
+        }
     }
     return (
         <li style={style} className={classes} onClick={selectHandler}>
@@ -29,5 +26,7 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
         </li>
     )
 }
+
+MenuItem.displayName = 'MenuItem' //用于保证menu插槽的渲染一定是MenuItem子组件
 
 export default MenuItem
