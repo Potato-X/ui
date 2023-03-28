@@ -14,8 +14,15 @@ const SubMenu: React.FC<ISubMenuProps> = (props) => {
     const { index, title, className, children, expand } = props;
     const { defaultIndex, selectItem, mode } = useContext(Context)
     const [menuOpen, setMenuOpen] = useState(false)
+    console.log(defaultIndex)
+    let cur: number
+    if (typeof defaultIndex == 'string') {
+        cur = Number((defaultIndex as string).split('-')[0])
+    } else {
+        cur = defaultIndex
+    }
     const classes = classNames('evil-menu-item sub-menu', className, {
-        'active': index === defaultIndex
+        'active': index === cur
     })
     function selectHandler() {
         if (typeof index === 'number') {
@@ -54,14 +61,15 @@ const SubMenu: React.FC<ISubMenuProps> = (props) => {
             const { displayName } = childEl.type
             if (displayName === 'MenuItem') {
                 return React.cloneElement(childEl, {
-                    index: `${index}-${i}`
+                    index: `${index}-${i}`,
+                    parentIndex: index
                 })
             } else {
                 console.error("当前Menu组件的子组件不是MenuItem")
             }
         })
         return (
-            <ul className={subMenuClasses}>
+            <ul className={subMenuClasses} onClick={selectHandler}>
                 {childrenComponent}
             </ul>
         )
@@ -72,7 +80,7 @@ const SubMenu: React.FC<ISubMenuProps> = (props) => {
         }
     }, [])
     return (
-        <li key={index} className={classes} onClick={selectHandler}  {...MouseHover}>
+        <li key={index} className={classes}  {...MouseHover}>
             <div className="submenu-title" {...MouseClick}>
                 {title}
             </div>

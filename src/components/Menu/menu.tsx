@@ -6,7 +6,7 @@ import { ISubMenuProps } from './submenu'
 type ModeType = 'vertical' | 'horizontal'
 interface IMenuProps {
     children: React.ReactNode | React.ReactNode[];
-    onSelect?: (index: number | string) => void;
+    onSelect?: (index: number | string, key?: any) => void;
     defaultIndex?: number | string;
     mode?: ModeType;
     style?: React.CSSProperties;
@@ -15,12 +15,12 @@ interface IMenuProps {
 
 interface IProvider {
     defaultIndex: number | string,
-    selectItem: (index: number | string) => void;
+    selectItem: (index: number | string, key?: any) => void;
     mode?: ModeType;
 }
 const Provider: IProvider = {
     defaultIndex: 0,
-    selectItem: (index) => {
+    selectItem: (index, key) => {
 
     },
     mode: "horizontal"
@@ -33,9 +33,9 @@ const Menu: React.FC<IMenuProps> = (props) => {
     const classes = classNames('evil-menu', className, {
         [`evil-menu-${mode}`]: true
     })
-    function selectItem(index: number | string) {
+    function selectItem(index: number | string, key: any) {
         setCurrentIndex(index)
-        onSelect && onSelect(index)
+        onSelect && onSelect(index, key)
     }
     function renderChildren() {
         return React.Children.map(children, (child, index) => {

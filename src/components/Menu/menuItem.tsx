@@ -7,21 +7,23 @@ export interface IMenuItemProps {
     className?: string;
     disabled?: boolean;
     index?: string | number;
+    keyInfo:any;
+    parentIndex?:string | number;
 }
 const MenuItem: React.FC<IMenuItemProps> = (props) => {
-    const { children, style, className, disabled, index } = props
+    const { children, style, className, disabled, index,keyInfo,parentIndex } = props
     const { defaultIndex, selectItem } = useContext(Context)
     const classes = classNames('evil-menu-item', className, {
         'is-disabled': disabled,
         'active': index === defaultIndex
     })
     function selectHandler(event:MouseEvent) {
-        console.log(index)
+        console.log(index,parentIndex)
         event.stopPropagation()
         if (typeof index === 'number') {
-            selectItem(index)
+            selectItem(index,keyInfo,)
         } else if (typeof index === 'string') {
-            selectItem(index)
+            selectItem(index,keyInfo)
         }
     }
     return (
