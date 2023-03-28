@@ -6,33 +6,34 @@ import { ISubMenuProps } from './submenu'
 type ModeType = 'vertical' | 'horizontal'
 interface IMenuProps {
     children: React.ReactNode | React.ReactNode[];
-    onSelect?: (index: number) => void;
-    defaultIndex?: number;
+    onSelect?: (index: number | string) => void;
+    defaultIndex?: number | string;
     mode?: ModeType;
     style?: React.CSSProperties;
     className?: string
 }
 
 interface IProvider {
-    defaultIndex: number,
-    selectItem: (index: number) => void;
+    defaultIndex: number | string,
+    selectItem: (index: number | string) => void;
+    mode?: ModeType;
 }
 const Provider: IProvider = {
     defaultIndex: 0,
     selectItem: (index) => {
 
-    }
+    },
+    mode: "horizontal"
 }
 export const Context = createContext(Provider)
-let index = 0
 const Menu: React.FC<IMenuProps> = (props) => {
 
     const { children, onSelect, defaultIndex, mode, style, className } = props
-    const [currentIndex, setCurrentIndex] = useState(defaultIndex ?? 0)
+    const [currentIndex, setCurrentIndex] = useState<number | string>(defaultIndex ?? 0)
     const classes = classNames('evil-menu', className, {
         [`evil-menu-${mode}`]: true
     })
-    function selectItem(index: number) {
+    function selectItem(index: number | string) {
         setCurrentIndex(index)
         onSelect && onSelect(index)
     }
@@ -49,7 +50,7 @@ const Menu: React.FC<IMenuProps> = (props) => {
         })
     }
     return (
-        <Context.Provider value={{ defaultIndex: currentIndex, selectItem }}>
+        <Context.Provider value={{ defaultIndex: currentIndex, selectItem, mode }}>
             <ul style={style} className={classes}>
                 {renderChildren()}
             </ul>

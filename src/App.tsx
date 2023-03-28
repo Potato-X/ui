@@ -9,7 +9,7 @@ const App: React.FC = () => {
     function clicklink(event: React.MouseEvent) {
         console.log('link')
     }
-    function getSelectItem(index: number) {
+    function getSelectItem(index: number|string) {
         console.log(`这是点击的第${index}个`)
     }
     return (<div>
@@ -29,12 +29,12 @@ const App: React.FC = () => {
         <div style={{ margin: '8px' }}></div>
         <Alert title='主题' type='error' description='这是一个简单的小测试'>error:我是插槽,我说了算,你这个description算老几?</Alert>
         <hr />
-        <Menu defaultIndex={0} onSelect={getSelectItem} mode="horizontal">
+        <Menu defaultIndex={'4-0'} onSelect={getSelectItem} mode="vertical">
             <MenuItem>苹果</MenuItem>
             <MenuItem disabled>梨子</MenuItem>
             <MenuItem>橙子</MenuItem>
             <MenuItem>西瓜</MenuItem>
-            <SubMenu title='水果'>
+            <SubMenu title='水果' expand>
                 <MenuItem>山竹</MenuItem>
                 <MenuItem>葡萄</MenuItem>
                 <MenuItem>荔枝</MenuItem>

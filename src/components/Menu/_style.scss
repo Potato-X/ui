@@ -29,6 +29,8 @@
 
     }
 
+
+
     .sub-menu {
         position: relative;
         border-bottom: $menu-item-active-border-width solid transparent;
@@ -38,10 +40,14 @@
             align-items: center;
         }
 
+        .evil-submenu-list.menu-opened {
+            display: block;
+        }
+
         // padding: 0;
         .evil-submenu-list {
             white-space: nowrap;
-
+            display: none;
 
             .evil-menu-item {
                 padding: $menu-item-padding-y $menu-item-padding-x;
@@ -53,6 +59,12 @@
 
                 &:hover,
                 &:active {
+                    color: #fff;
+                    background-color: $primary;
+                    border: 0
+                }
+
+                &.active {
                     color: #fff;
                     background-color: $primary;
                     border: 0

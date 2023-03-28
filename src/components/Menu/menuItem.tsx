@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext,MouseEvent } from 'react'
 import classNames from 'classnames'
 import { Context } from './menu'
 export interface IMenuItemProps {
@@ -6,7 +6,7 @@ export interface IMenuItemProps {
     style?: React.CSSProperties;
     className?: string;
     disabled?: boolean;
-    index?: string|number;
+    index?: string | number;
 }
 const MenuItem: React.FC<IMenuItemProps> = (props) => {
     const { children, style, className, disabled, index } = props
@@ -15,8 +15,12 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
         'is-disabled': disabled,
         'active': index === defaultIndex
     })
-    function selectHandler() {
+    function selectHandler(event:MouseEvent) {
+        console.log(index)
+        event.stopPropagation()
         if (typeof index === 'number') {
+            selectItem(index)
+        } else if (typeof index === 'string') {
             selectItem(index)
         }
     }
