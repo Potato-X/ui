@@ -17,7 +17,8 @@ const App: React.FC = () => {
         { name: '梨子', id: 'pear' },
         { name: '橙子', id: 'orange' },
         { name: '西瓜', id: 'watermalen' },
-        { name: '水果', id: 'froute', children: [{ name: '山竹', id: 'shanzhu' }, { name: '葡萄', id: 'putao' }, { name: '荔枝', id: 'lizhi' }] }
+        { name: '水果', id: 'froute', children: [{ name: '山竹', id: 'shanzhu' }, { name: '葡萄', id: 'putao' }, { name: '荔枝', id: 'lizhi' }] },
+        { name: '蔬菜', id: 'vigetables', children: [{ name: '土豆', id: 'potato' }, { name: '番茄', id: 'tomato' }, { name: '水稻', id: 'rice' }] }
     ]
     function renderMenu() {
         return menuList.map((item, index) => {
@@ -58,7 +59,7 @@ const App: React.FC = () => {
             <Alert title='主题' type='error' description='这是一个简单的小测试'>error:我是插槽,我说了算,你这个description算老几?</Alert>
         </div>
         <hr />
-        <Menu defaultIndex={'4-0'} onSelect={getSelectItem} mode="vertical">
+        <Menu defaultIndex={'4-0'} onSelect={getSelectItem} mode="horizontal">
             {renderMenu()}
             {/* <MenuItem keyInfo={{ name: '苹果', id: 'apple' }}>苹果</MenuItem>
             <MenuItem disabled keyInfo={{ name: '梨子', id: 'pear' }}>梨子</MenuItem>

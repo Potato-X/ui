@@ -14,7 +14,6 @@ const SubMenu: React.FC<ISubMenuProps> = (props) => {
     const { index, title, className, children, expand } = props;
     const { defaultIndex, selectItem, mode } = useContext(Context)
     const [menuOpen, setMenuOpen] = useState(false)
-    console.log(defaultIndex)
     let cur: number
     if (typeof defaultIndex == 'string') {
         cur = Number((defaultIndex as string).split('-')[0])

@@ -18,7 +18,6 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
         'active': index === defaultIndex
     })
     function selectHandler(event:MouseEvent) {
-        console.log(index,parentIndex)
         event.stopPropagation()
         if (typeof index === 'number') {
             selectItem(index,keyInfo,)
