@@ -81,7 +81,7 @@ const App: React.FC = () => {
         </Menu>
         <hr />
         {/* <input type="text" value={value1} onChange={model}/> */}
-        <Tabs activeKey='tab1' onChange={(key:string)=>{console.log(key)}}>
+        <Tabs activeKey='tab1'>
             <TabsItem itemKey='tab1' label='tab1'>
                 这是tab1页签
                 <input type="text" value={value1} onChange={model}/>

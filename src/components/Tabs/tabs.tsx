@@ -16,14 +16,14 @@ interface Icaches {
 interface IContext {
     activeKey: string;
     caches: Icaches;
-    getActiveItemChildren: ( key: string) => void;
-    init: (caches: Icaches) => void
+    getActiveItemChildren: (key: string) => void;
+    init: (key: string, children: React.ReactNode) => void
 }
 const TabsContext: IContext = {
     activeKey: "",
     caches: {},
-    getActiveItemChildren: ( key: string) => { },
-    init: (caches) => { }
+    getActiveItemChildren: (key: string) => { },
+    init: (key: string, children: React.ReactNode) => { }
 }
 export let Context = createContext<IContext>(TabsContext)
 const Tabs: React.FC<ITabsProps> = (props) => {
@@ -51,10 +51,15 @@ const Tabs: React.FC<ITabsProps> = (props) => {
         setActiveIndex(key)
         onChange && onChange(key)
     }
-    function initItem(caches: Icaches) {
-        console.log(caches)
-        setCaches(caches)
+    function initItem(key: string, children: React.ReactNode) {
+        console.log(key,children)
+        TabsContext.caches[key] = children
+        setCaches(TabsContext.caches)
+
     }
+    useEffect(() => {
+        console.log(caches)
+    }, [activeIndex])
     return (
         <div className={classes}>
             <Context.Provider value={{ activeKey: activeIndex, getActiveItemChildren, caches: caches, init: initItem }}>

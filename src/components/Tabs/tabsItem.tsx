@@ -9,7 +9,7 @@ export interface ITabsItemProps {
 }
 
 const TabsItem: React.FC<ITabsItemProps> = (props) => {
-    const { activeKey, getActiveItemChildren, caches, init } = useContext(Context)
+    const { activeKey, getActiveItemChildren, init } = useContext(Context)
     const { children, className, label, itemKey } = props
     const classes = classNames('evil-tabs-item', className, {
         'is-active': activeKey === itemKey
@@ -24,12 +24,11 @@ const TabsItem: React.FC<ITabsItemProps> = (props) => {
        
     // }, [])
     useEffect(() => {
-        caches[itemKey] = children
-        init(caches)
+        init(itemKey,children)
         if (activeKey === itemKey) {
             getActiveItemChildren(itemKey)
         }
-    })
+    },[])
     return (
         <li className={classes} onClick={selectItem}>
             {label}
