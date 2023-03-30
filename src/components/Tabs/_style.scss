@@ -1,0 +1,22 @@
+.evil-tabs{
+    &-list{
+        list-style: none;
+        padding: 0;
+        border-bottom: $nav-tabs-border-width solid $nav-tabs-border-color;
+        .evil-tabs-item{
+            cursor: pointer;
+            padding: $nav-link-padding-y $nav-link-padding-x;
+            &.is-active{
+                color: $nav-tabs-link-active-color;
+                border-bottom: $nav-tabs-border-width solid $nav-tabs-link-active-color;
+            }
+            &:hover{
+                color: $nav-tabs-link-active-color;
+            }
+        }
+        
+    }
+    &-list--horizontal{
+        display: flex;
+    }
+}

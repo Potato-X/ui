@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState,FormEvent } from 'react'
 import Button from './components/Button'
 import Alert from "./components/Alert/alert"
 import { Menu, MenuItem, SubMenu } from './components/Menu'
+import { Tabs, TabsItem } from './components/Tabs'
 const App: React.FC = () => {
     function clickHandler(event: React.MouseEvent) {
         console.log(event)
@@ -12,6 +13,9 @@ const App: React.FC = () => {
     function getSelectItem(index: number | string, keyInfo: any) {
         console.log(`这是点击的第${index}个，信息内容：${JSON.stringify(keyInfo)}`,)
     }
+    const [value1,setValue1] = useState("")
+    const [value2,setValue2] = useState("")
+    const [value3,setValue3] = useState("")
     const menuList = [
         { name: '苹果', id: 'apple' },
         { name: '梨子', id: 'pear' },
@@ -36,6 +40,10 @@ const App: React.FC = () => {
                 )
             }
         })
+    }
+    function model(event:any){
+        console.log(event)
+        setValue1(event.target.value)
     }
     return (<div>
         <div>
@@ -71,6 +79,22 @@ const App: React.FC = () => {
                 <MenuItem keyInfo={{ name: '荔枝', id: 'lizhi' }}>荔枝</MenuItem>
             </SubMenu> */}
         </Menu>
+        <hr />
+        {/* <input type="text" value={value1} onChange={model}/> */}
+        <Tabs activeKey='tab1' onChange={(key:string)=>{console.log(key)}}>
+            <TabsItem itemKey='tab1' label='tab1'>
+                这是tab1页签
+                <input type="text" value={value1} onChange={model}/>
+            </TabsItem>
+            <TabsItem itemKey='tab2' label='tab2'>
+                这是tab2页签
+                {/* <input type="text" value={value2} onChange={(event)=>setValue2(event.target.value)}/> */}
+            </TabsItem>
+            <TabsItem itemKey='tab3' label='tab3'>
+                这是tab3页签
+                {/* <input type="text" value={value3} onChange={(event)=>setValue3(event.target.value)}/> */}
+            </TabsItem>
+        </Tabs>
     </div>)
 }
 
