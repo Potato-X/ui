@@ -1,8 +1,9 @@
-import React, { useState,FormEvent } from 'react'
+import React, { useState, FormEvent } from 'react'
 import Button from './components/Button'
 import Alert from "./components/Alert/alert"
 import { Menu, MenuItem, SubMenu } from './components/Menu'
 import { Tabs, TabsItem } from './components/Tabs'
+import Input from './components/Input/input'
 const App: React.FC = () => {
     function clickHandler(event: React.MouseEvent) {
         console.log(event)
@@ -13,9 +14,9 @@ const App: React.FC = () => {
     function getSelectItem(index: number | string, keyInfo: any) {
         console.log(`这是点击的第${index}个，信息内容：${JSON.stringify(keyInfo)}`,)
     }
-    const [value1,setValue1] = useState("")
-    const [value2,setValue2] = useState("")
-    const [value3,setValue3] = useState("")
+    const [value1, setValue1] = useState("")
+    const [value2, setValue2] = useState("")
+    const [value3, setValue3] = useState("")
     const menuList = [
         { name: '苹果', id: 'apple' },
         { name: '梨子', id: 'pear' },
@@ -41,7 +42,7 @@ const App: React.FC = () => {
             }
         })
     }
-    function model(event:any){
+    function model(event: any) {
         console.log(event)
         setValue1(event.target.value)
     }
@@ -84,7 +85,7 @@ const App: React.FC = () => {
         <Tabs activeKey='tab1'>
             <TabsItem itemKey='tab1' label='tab1'>
                 这是tab1页签
-                <input type="text" value={value1} onChange={model}/>
+                <Input />
             </TabsItem>
             <TabsItem itemKey='tab2' label='tab2'>
                 这是tab2页签

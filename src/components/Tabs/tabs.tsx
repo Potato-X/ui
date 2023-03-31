@@ -1,4 +1,4 @@
-import React, { cloneElement, createContext, useEffect, useState } from "react";
+import React, { cloneElement, createContext, useEffect, useState,useRef } from "react";
 import classNames from "classnames";
 import { ITabsItemProps } from './tabsItem'
 type ModeType = "vertical" | "horizontal"
@@ -29,6 +29,7 @@ export let Context = createContext<IContext>(TabsContext)
 const Tabs: React.FC<ITabsProps> = (props) => {
 
     const { mode, children, className, activeKey, onChange } = props
+    const TablistRef = useRef<Icaches>({})
     const [activeIndex, setActiveIndex] = useState(activeKey)
     const [caches, setCaches] = useState<Icaches>({})
     const classes = classNames('evil-tabs', className, {
@@ -53,11 +54,13 @@ const Tabs: React.FC<ITabsProps> = (props) => {
     }
     function initItem(key: string, children: React.ReactNode) {
         console.log(key,children)
-        TabsContext.caches[key] = children
-        setCaches(TabsContext.caches)
+        // TabsContext.caches[key] = children
+        TablistRef.current[key] = children
+        // setCaches(TabsContext.caches)
 
     }
     useEffect(() => {
+        setCaches(TablistRef.current)
         console.log(caches)
     }, [activeIndex])
     return (

@@ -18,11 +18,6 @@ const TabsItem: React.FC<ITabsItemProps> = (props) => {
         console.log(`activeKey:${activeKey},itemKey:${itemKey}`)
         getActiveItemChildren(itemKey)
     }
-    // useEffect(() => {
-    //     console.log(caches)
-    //     init(caches)
-       
-    // }, [])
     useEffect(() => {
         init(itemKey,children)
         if (activeKey === itemKey) {
