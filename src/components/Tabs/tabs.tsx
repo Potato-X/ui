@@ -1,6 +1,7 @@
-import React, { cloneElement, createContext, useEffect, useState,useRef } from "react";
+import React, { cloneElement, createContext, useEffect, useState, useRef } from "react";
 import classNames from "classnames";
 import { ITabsItemProps } from './tabsItem'
+import { KeepAlive, AliveTransfer } from "../KeepAlive";
 type ModeType = "vertical" | "horizontal"
 
 interface ITabsProps {
@@ -53,7 +54,7 @@ const Tabs: React.FC<ITabsProps> = (props) => {
         onChange && onChange(key)
     }
     function initItem(key: string, children: React.ReactNode) {
-        console.log(key,children)
+        console.log(key, children)
         // TabsContext.caches[key] = children
         TablistRef.current[key] = children
         // setCaches(TabsContext.caches)
@@ -71,7 +72,11 @@ const Tabs: React.FC<ITabsProps> = (props) => {
                 </ul>
             </Context.Provider>
             <div className="tab-content">
-                {caches[activeIndex]}
+                <KeepAlive>
+                    <AliveTransfer>
+                        {caches[activeIndex]}
+                    </AliveTransfer>
+                </KeepAlive>
             </div>
         </div>
     )

@@ -4,6 +4,7 @@ import Alert from "./components/Alert/alert"
 import { Menu, MenuItem, SubMenu } from './components/Menu'
 import { Tabs, TabsItem } from './components/Tabs'
 import Input from './components/Input/input'
+
 const App: React.FC = () => {
     function clickHandler(event: React.MouseEvent) {
         console.log(event)
