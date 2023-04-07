@@ -72,11 +72,7 @@ const Tabs: React.FC<ITabsProps> = (props) => {
                 </ul>
             </Context.Provider>
             <div className="tab-content">
-                <KeepAlive>
-                    <AliveTransfer>
-                        {caches[activeIndex]}
-                    </AliveTransfer>
-                </KeepAlive>
+                {caches[activeIndex]}
             </div>
         </div>
     )
