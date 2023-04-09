@@ -1,10 +1,14 @@
-import React from "react";
-
+import React, { useContext, useEffect } from "react";
+import { context } from './keepalive'
 interface IAliveTransferProps {
-    children: React.ReactNode
+    children: React.ReactNode;
+    id:string;
 }
 const AliveTransfer: React.FC<IAliveTransferProps> = (props) => {
-    return <></>
+    const { keep } = useContext(context)
+    const { children,id } = props
+    keep(id,children)
+    return <>{children}</>
 }
 
 export default AliveTransfer
