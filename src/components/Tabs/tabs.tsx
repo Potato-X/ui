@@ -74,7 +74,7 @@ const Tabs: React.FC<ITabsProps> = (props) => {
                     {renderChildren()}
                 </ul>
             </Context.Provider>
-            <div className="tab-content" ref={(node)=>{console.log('node====>',node)}}>
+            <div className="tab-content">
                 {caches[activeIndex]}
             </div>
         </div>
