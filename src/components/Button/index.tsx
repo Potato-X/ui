@@ -1,2 +1,5 @@
 import Button from './button'
-export default Button 
+export default Button
+export {
+    Button
+}

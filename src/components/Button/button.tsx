@@ -1,20 +1,32 @@
-import React from "react";
+import React,{FC} from "react";
 import classNames from 'classnames'
-export type ButtonSize = "large" | "small"
-export type ButtonType = "primary" | "default" | "danger" | "link"
+// export type ButtonSize = "large" | "small"
+// export type ButtonType = "primary" | "default" | "danger" | "link"
 
 interface IBaseButtonProps {
-    className?: string;
+    /**自定义样式名字*/
+    className?: string; 
+    /**是否禁用按钮 */
     disabled?: boolean;
-    size?: ButtonSize;
-    btnType?: ButtonType;
+    size?: "large" | "small";
+    /**按钮类型 */
+    btnType?: "primary" | "default" | "danger" | "link";
+    /**插槽内容 */
     children: React.ReactNode;
+    /**按钮类型为link类型时，点击按钮后的链接跳转 */
     href?: string
 }
 type NativeButtonProps = IBaseButtonProps & React.ButtonHTMLAttributes<HTMLElement> //获取button所有的原生属性
 type AnchorButtonProps = IBaseButtonProps & React.AnchorHTMLAttributes<HTMLElement> //获取a标签所有的原生属性
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
-const Button: React.FC<ButtonProps> = (props) => {
+/**
+ * #### 引入组件
+ * 
+ * ```
+ * import Button from 'evil'
+ * ```
+ */
+export const Button: FC<ButtonProps> = (props) => {
     const {
         btnType,
         disabled,
