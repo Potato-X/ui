@@ -1,0 +1,55 @@
+.evil-input {
+    position: relative;
+    .evil-inner_input {
+        box-sizing: border-box;
+        width: 100%;
+        height: 40px;
+        line-height:40px;
+        padding: $input-padding-y $input-padding-x;
+        border: $input-border-width solid $input-border-color;
+        border-radius: $input-border-radius;
+        color: $input-plaintext-color;
+        transition: border-color .25s ease;
+        &::placeholder {
+            color: $input-placeholder-color;
+        }
+
+        &:focus-visible {
+            outline: 1px solid $input-focus-border-color;
+        }
+    }
+    .evil-inner_input:not(.is-disabled):hover:not(:focus-visible) {
+        border-color: #8391a5;
+    }
+    .evil-inner_input.is-disabled{
+        cursor:not-allowed;
+        background-color: $input-disabled-bg;
+        border-color: $input-disabled-border-color;
+        &::placeholder {
+            color: #bbb;
+        }
+    }
+    .evil-inner_input.evil-inner_input--suffix:not(.is-disabled){
+        padding-right: 30px;
+    }
+    .evil-inner_input.evil-inner_input--prefix:not(.is-disabled){
+        padding-left: 30px;
+    }
+    .evil-input-icon{
+        display: inline-block;
+        position: absolute;
+        height: 40px;
+        width: 25px;
+        line-height: 40px;
+        text-align: center;
+        i{
+            font-size: 14px;
+        }
+    }
+    .prefix-icon{
+        left: 5px;
+    }
+    .suffix-icon{
+        right: 5px;
+    }
+}
