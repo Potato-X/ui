@@ -1,4 +1,4 @@
-import React, { cloneElement, createContext, useEffect, useState, useRef,useReducer } from "react";
+import React, { cloneElement, createContext, useEffect, useState, useRef } from "react";
 import classNames from "classnames";
 import { ITabsItemProps } from './tabsItem'
 import { KeepAlive, AliveTransfer } from "../KeepAlive";
@@ -18,9 +18,9 @@ interface IContext {
     activeKey: string;
     caches: Icaches;
     getActiveItemChildren: (key: string) => void;
-    init: (key: string, children: React.ReactNode) => void
+    init: (key: string, children: React.ReactNode) => Element|void
 }
-const TabsContext: IContext = {
+let TabsContext: IContext = {
     activeKey: "",
     caches: {},
     getActiveItemChildren: (key: string) => { },
@@ -64,9 +64,6 @@ const Tabs: React.FC<ITabsProps> = (props) => {
         setCaches(TablistRef.current)
         console.log(caches)
     }, [activeIndex])
-    useEffect(() => {
-        console.log(3333)
-    })
     return (
         <div className={classes}>
             <Context.Provider value={{ activeKey: activeIndex, getActiveItemChildren, caches: caches, init: initItem }}>

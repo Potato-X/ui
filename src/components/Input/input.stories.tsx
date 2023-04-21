@@ -28,9 +28,16 @@ export const 禁用状态: Story = {
         disabled: true
     },
 };
+export const 密码输入框: Story = {
+    args: {
+        type:'password',
+        clearable:true,
+    },
+};
 export const 可清空的输入框: Story = {
     args: {
         clearable: true,
+        suffixIcon: "icon-date",
     },
 };
 export const 带icon的输入框: Story = {
