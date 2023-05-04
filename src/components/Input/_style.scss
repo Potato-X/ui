@@ -1,78 +1,112 @@
-.evil-input {
-    position: relative;
+.evil-input-box {
+    display: flex;
+    height: 40px;
+    border: 1px solid #dcdfe6;
 
-    .evil-inner_input {
-        box-sizing: border-box;
+    border-radius: $input-border-radius;
+
+    .evil-input {
+        display: inline-block;
+        position: relative;
         width: 100%;
-        height: 40px;
-        line-height: 40px;
-        padding: $input-padding-y $input-padding-x;
-        border: $input-border-width solid $input-border-color;
-        border-radius: $input-border-radius;
-        color: $input-plaintext-color;
-        transition: border-color .25s ease;
+        height: 100%;
 
-        &::placeholder {
-            color: $input-placeholder-color;
+        .evil-inner_input {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            padding: $input-padding-y $input-padding-x;
+            border: none;
+            border-radius: $input-border-radius;
+            color: $input-plaintext-color;
+            transition: border-color .25s ease;
+
+            &::placeholder {
+                color: $input-placeholder-color;
+            }
+
+            &:focus-visible {
+                outline: 1px solid $input-focus-border-color;
+            }
         }
 
-        &:focus-visible {
-            outline: 1px solid $input-focus-border-color;
+        .evil-inner_input--pend {
+            border-radius: 0;
         }
-    }
 
-    .evil-inner_input:not(.is-disabled):hover:not(:focus-visible) {
-        border-color: #8391a5;
-    }
-
-    .evil-inner_input.is-disabled {
-        cursor: not-allowed;
-        background-color: $input-disabled-bg;
-        border-color: $input-disabled-border-color;
-
-        &::placeholder {
-            color: #bbb;
+        .evil-inner_input:not(.is-disabled):hover:not(:focus-visible) {
+            border-color: #8391a5;
         }
-    }
 
-    .evil-inner_input.evil-inner_input--suffix:not(.is-disabled) {
-        padding-right: 30px;
-    }
+        .evil-inner_input.is-disabled {
+            cursor: not-allowed;
+            background-color: $input-disabled-bg;
+            border-color: $input-disabled-border-color;
 
-    .evil-inner_input.evil-inner_input--prefix:not(.is-disabled) {
-        padding-left: 30px;
-    }
-
-    .evil-input-icon {
-        display: inline-block;
-        height: 40px;
-        width: 25px;
-        line-height: 40px;
-        text-align: center;
-
-        i {
-            font-size: 14px;
+            &::placeholder {
+                color: #bbb;
+            }
         }
-    }
 
-    .evil-input-icon.prefix-icon {
-        position: absolute;
-    }
+        .evil-inner_input.evil-inner_input--suffix:not(.is-disabled) {
+            padding-right: 30px;
+        }
 
-    .prefix-icon {
-        left: 5px;
-    }
+        .evil-inner_input.evil-inner_input--prefix:not(.is-disabled) {
+            padding-left: 30px;
+        }
 
-    .suffix-icon-list {
-        display: inline-block;
-        position: absolute;
-        height: 40px;
-        right: 5px;
+        .evil-input-icon {
+            // display: inline-block;
+            height: 100%;
+            width: 25px;
+            display: flex;
+            align-items: center;
+            // text-align: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+            i {
+                font-size: 14px;
+            }
+        }
+
+        .evil-input-icon.prefix-icon {
+            position: absolute;
+        }
+
+        .prefix-icon {
+            left: 5px;
+        }
+
+        .suffix-icon-list {
+            display: flex;
+            position: absolute;
+            height: 40px;
+            right: 5px;
+            top: 0;
+        }
+
+
     }
 
     .evil-pend {
-        display: inline-block;
-        padding: 0 10px;
-        background-color: rgba(0, 0, 0, .02);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        background-color: #f5f7fa;
+        color: #909399;
+        padding: 0 20px;
+
+        &-prepend {
+            border-right: 1px solid #dcdfe6;
+            border-top-left-radius: $input-border-radius;
+            border-bottom-left-radius: $input-border-radius;
+        }
+
+        &-append {
+            border-left: 1px solid #dcdfe6;
+            border-top-right-radius: $input-border-radius;
+            border-bottom-right-radius: $input-border-radius;
+        }
     }
 }

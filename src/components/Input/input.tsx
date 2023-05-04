@@ -9,18 +9,19 @@ export interface IInputProps extends Omit<React.InputHTMLAttributes<HTMLElement>
     clearable?: boolean;
     prepend?: string | React.ReactNode;
     append?: string | React.ReactNode;
+    defaultValue?:string;
 }
 type IconType = "prefix" | "suffix"
 export const Input: React.FC<IInputProps> = (props) => {
-
-    const [inputValue, setInputValue] = useState("")
+    const { defaultValue,className, suffixIcon, prefixIcon, clearable, prepend, append, ...restProps } = props
+    const [inputValue, setInputValue] = useState(defaultValue)
     const [clearIconShow, setClearIconShow] = useState(false)
-    const { className, suffixIcon, prefixIcon, clearable, prepend, append, ...restProps } = props
     const classes = classNames('evil-input', className)
     const innerInputClasses = classNames('evil-inner_input', {
         'is-disabled': restProps.disabled,
         'evil-inner_input--suffix': !!suffixIcon,
-        'evil-inner_input--prefix': !!prefixIcon
+        'evil-inner_input--prefix': !!prefixIcon,
+        'evil-inner_input--pend': prepend || append
     })
     function renderIcon(IconType: IconType, Icon: string | React.ReactNode, functionType?: string) {
         function clearableHandler() {
@@ -53,13 +54,9 @@ export const Input: React.FC<IInputProps> = (props) => {
             }
         }
     }
-    function renderOutAppend(pend: string | React.ReactNode) {
-        if (typeof pend === 'string') {
-            
-            return <span className="evil-pend">{pend}</span>
-        } else {
-            return <div className="evil-pend">{pend}</div>
-        }
+    function renderOutAppend(pendType: "prepend" | "append", pend: string | React.ReactNode) {
+        const className = classNames('evil-pend', `evil-pend-${pendType}`)
+        return <div className={className}>{pend}</div>
     }
     function onMouseEnterHandler() {
         if (inputValue) {
@@ -83,8 +80,8 @@ export const Input: React.FC<IInputProps> = (props) => {
         }
     }, [inputValue])
     return (
-        <div>
-            {prepend&&renderOutAppend(prepend)}
+        <div className="evil-input-box">
+            {prepend && renderOutAppend('prepend', prepend)}
             <div className={classes} onMouseEnter={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler}>
                 {renderIcon('prefix', prefixIcon)}
                 <input
@@ -104,7 +101,7 @@ export const Input: React.FC<IInputProps> = (props) => {
                 }
 
             </div>
-            {append&&renderOutAppend(append)}
+            {append && renderOutAppend('append', append)}
         </div>
     )
 }
